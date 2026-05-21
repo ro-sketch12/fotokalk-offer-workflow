@@ -1,0 +1,16 @@
+.env
+.env.*
+node_modules/
+.next/
+dist/
+build/
+coverage/
+*.log
+*.mp4
+*.mov
+*.zip
+*.key
+*.pem
+*.p12
+*.mobileprovision
+

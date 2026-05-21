@@ -1,0 +1,11 @@
+{
+  "name": "fotokalk-public-proof",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Public-safe core logic proof for the FotoKalk offer workflow.",
+  "scripts": {
+    "test": "node --test test/*.test.mjs"
+  }
+}
+

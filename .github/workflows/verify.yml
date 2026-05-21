@@ -1,0 +1,27 @@
+name: Verify public proof
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run code-proof tests
+        run: npm test
+      - name: Run public-safety scan
+        run: python3 scripts/public_safety_scan.py
+      - name: Check for oversized files
+        run: |
+          if find . -type f -size +1M | grep .; then
+            echo "Oversized files should not be committed to this public proof repo."
+            exit 1
+          fi
