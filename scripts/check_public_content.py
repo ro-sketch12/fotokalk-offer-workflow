@@ -60,12 +60,12 @@ def main() -> int:
             findings.append(f"phone-like value in {path.relative_to(ROOT)}: {match.group(0)}")
 
     if findings:
-        print("Public-safety scan failed:")
+        print("Public content check failed:")
         for finding in findings:
             print(f"- {finding}")
         return 1
 
-    print("Public-safety scan passed.")
+    print("Public content check passed.")
     return 0
 
 

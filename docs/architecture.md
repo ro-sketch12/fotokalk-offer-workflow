@@ -14,7 +14,7 @@ flowchart LR
 
 ## Komponenten
 
-| Bereich | Aufgabe | Public-safe Detailgrad |
+| Bereich | Aufgabe | Öffentlicher Detailgrad |
 | --- | --- | --- |
 | Betriebs-Setup | Betrieb, Logo, Kontaktdaten, PDF-Darstellung, Grundlogik | Kategorien nennen, keine echten Daten |
 | Preislogik | Preislisten, Stundenlohn, Standardpositionen, Material-/Leistungslogik | Konzept nennen, keine produktiven Preislisten |
@@ -37,4 +37,3 @@ flowchart LR
 - Datenbanktabellen und Migrationen
 - echte Konfiguration
 - produktive Kundendaten
-

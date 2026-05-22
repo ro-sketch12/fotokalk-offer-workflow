@@ -39,7 +39,7 @@ test("builds a reviewable offer draft from demo room data", () => {
   assert.ok(draft.reviewFlags.some((flag) => flag.field === "photos"));
 });
 
-test("summarizes draft for a compact UI or README proof", () => {
+test("summarizes draft for a compact UI or README example", () => {
   const draft = buildOfferDraft({
     rooms: [{ name: "Büro", lengthM: 4, widthM: 3, heightM: 2.5, doors: 1, windows: 1 }],
   });
@@ -52,4 +52,3 @@ test("summarizes draft for a compact UI or README proof", () => {
     blockingReviewFlags: 0,
   });
 });
-

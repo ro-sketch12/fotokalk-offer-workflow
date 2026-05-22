@@ -1,4 +1,4 @@
-# Reviewer Guide · FotoKalk
+# Schneller Überblick · FotoKalk
 
 ## In 60 Sekunden prüfen
 
@@ -8,10 +8,10 @@
 4. `test/offer-flow.test.mjs`: prüfen, welche Logik getestet ist.
 5. `docs/public-private-boundary.md`: sehen, was bewusst nicht veröffentlicht wird.
 
-## Was dieser Proof zeigen soll
+## Was diese Arbeitsprobe zeigen soll
 
 FotoKalk zeigt, dass ein Handwerksproblem in eine App-Lösung übersetzt wurde: Betriebsdaten, Preislogik, Baustellenkontext, KI-gestützter Entwurf und fachliche Prüfung.
 
-## Was dieser Proof nicht zeigen soll
+## Was diese Arbeitsprobe nicht zeigen soll
 
 Das Repo ist kein vollständiger Produktcode. Es zeigt keinen produktiven API-, Auth-, Payment-, Admin- oder Datenbankcode und enthält keine Kundendaten.

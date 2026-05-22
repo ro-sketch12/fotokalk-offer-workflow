@@ -1,4 +1,4 @@
-name: Verify public proof
+name: Verify project files
 
 on:
   push:
@@ -15,10 +15,10 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Run code-proof tests
+      - name: Run code tests
         run: npm test
-      - name: Run public-safety scan
-        run: python3 scripts/public_safety_scan.py
+      - name: Run public content check
+        run: python3 scripts/check_public_content.py
       - name: Check for oversized files
         run: |
           if find . -type f -size +1M | grep .; then

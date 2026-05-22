@@ -23,22 +23,22 @@ Siehe [docs/architecture.md](./docs/architecture.md).
 
 Siehe [docs/workflow.md](./docs/workflow.md).
 
-## Für Reviewer
+## Schneller Einstieg
 
-Siehe [docs/reviewer-guide.md](./docs/reviewer-guide.md) für den schnellen Prüfpfad.
+Siehe [docs/quick-review.md](./docs/quick-review.md) für den schnellen Überblick.
 
-## Public-safe Code-Proof
+## Ausführbarer Code-Auszug
 
-Dieses Repo enthält bewusst keinen vollständigen Produktcode. Der kleine Code-Kern zeigt aber prüfbar die Angebotslogik, die öffentlich sicher erklärbar ist:
+Dieses Repo enthält bewusst keinen vollständigen Produktcode. Der kleine Code-Auszug zeigt aber nachvollziehbar die Angebotslogik, die öffentlich sicher erklärbar ist:
 
 - `src/offer-flow.mjs`: Demo-Logik für Raumflächen, Öffnungen, Preispositionen, Angebotsentwurf und Prüfhinweise
-- `test/offer-flow.test.mjs`: Tests für Flächenberechnung, Angebotspositionen, Review-Flags und Public-Safety-Grenzen
+- `test/offer-flow.test.mjs`: Tests für Flächenberechnung, Angebotspositionen, Review-Flags und öffentliche Grenzen
 
 Lokal prüfen:
 
 ```bash
 npm test
-python3 scripts/public_safety_scan.py
+python3 scripts/check_public_content.py
 ```
 
 Der Code nutzt nur synthetische Demo-Daten. Nicht enthalten sind API-Routen, Auth, Payment, Admin-Logik, echte Prompts oder echte Kundendaten.
@@ -48,9 +48,9 @@ Der Code nutzt nur synthetische Demo-Daten. Nicht enthalten sind API-Routen, Aut
 - High-Level-Architektur
 - Angebotsworkflow vom Setup bis zur Prüfung
 - Produktentscheidungen und Grenzen
-- reduzierter, ausführbarer Code-Kern für die Angebotslogik
+- reduzierter, ausführbarer Code-Auszug für die Angebotslogik
 - Tech-Stack auf Komponentenebene
-- Link zur geprüften Portfolio-/Demo-Oberfläche, sobald public-safe freigegeben
+- Link zur geprüften Portfolio-/Demo-Oberfläche, sobald öffentlich freigegeben
 
 ## Was bewusst nicht öffentlich ist
 

@@ -1,11 +1,10 @@
 {
-  "name": "fotokalk-public-proof",
+  "name": "fotokalk-offer-workflow",
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Public-safe core logic proof for the FotoKalk offer workflow.",
+  "description": "Reduced offer-workflow logic for the FotoKalk case.",
   "scripts": {
     "test": "node --test test/*.test.mjs"
   }
 }
-
