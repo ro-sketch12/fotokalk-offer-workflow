@@ -1,40 +1,48 @@
 # Workflow · FotoKalk
 
-## Nutzerablauf
+## User flow
 
-1. App öffnen und Betrieb einrichten.
-2. Brand Voice, Logo, Stammdaten, PDF-Darstellung, Preislisten und Stundenlöhne hinterlegen.
-3. Neues Angebot starten.
-4. Baustellenfotos, Notizen, Text/PDF-Kontext und Raummaße erfassen.
-5. KI bereitet den Kontext und einen Angebotsentwurf vor.
-6. Maler prüft Positionen, Raummaße, Preise und Formulierungen.
-7. Entwurf wird bearbeitet und als Angebot/PDF weiterverwendet.
+1. Open the app and configure the business profile.
+2. Add brand voice, logo context, company data, price logic and hourly rates.
+3. Start a new offer draft.
+4. Add room measurements, site notes and demo photo references.
+5. Generate structured line items and totals.
+6. Review measurement, pricing and context flags.
+7. Edit the draft before using it as a real offer.
 
 ```mermaid
 sequenceDiagram
-  participant U as Maler
-  participant S as Betriebs-Setup
-  participant C as Baustellenkontext
-  participant AI as KI-Schritt
-  participant O as Angebotsentwurf
+  participant Painter
+  participant Setup
+  participant Context
+  participant OfferLogic
+  participant Draft
 
-  U->>S: Stammdaten, Logo, Preise, Stundenlohn einrichten
-  U->>C: Fotos, Notizen, Raummaße, Dokumentkontext erfassen
-  C->>AI: Kontext strukturieren lassen
-  AI->>O: Angebotsentwurf vorbereiten
-  O->>U: Prüfung und Bearbeitung
+  Painter->>Setup: Business profile, rates, price logic
+  Painter->>Context: Rooms, measurements, notes, photo references
+  Context->>OfferLogic: Structured input
+  OfferLogic->>Draft: Line items, totals, review flags
+  Draft->>Painter: Review and edit before sending
 ```
 
-## Produktentscheidung
+## Code flow in this repo
 
-Der erste sinnvolle Umfang ist nicht “KI macht alles”, sondern:
+```mermaid
+flowchart LR
+  A["examples/demo-offer-input.json"] --> B["buildOfferDraft"]
+  B --> C["calculateRoomAreas"]
+  B --> D["buildLineItems"]
+  B --> E["buildReviewFlags"]
+  B --> F["renderOfferMarkdown"]
+  F --> G["examples/demo-offer-output.md"]
+```
 
-- Eingaben sauber sammeln
-- Betriebslogik berücksichtigen
-- Entwurf vorbereiten
-- fachliche Kontrolle sichtbar halten
+## Main product decision
 
-## Arbeitgeber-Signal
+The app should not pretend that a photo alone is enough for a reliable offer. The public-safe workflow keeps this distinction visible:
 
-FotoKalk zeigt, dass Robert ein reales Arbeitsproblem in einen App-Flow übersetzen kann: Setup, Daten, KI-Schritt, Ausgabe und menschliche Prüfung.
-
+- photos and notes create context
+- room data drives calculations
+- price logic creates draft positions
+- review flags show what still needs human checking
+- the final decision stays with the painter

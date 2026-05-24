@@ -1,69 +1,76 @@
-# FotoKalk · Web-App für Angebotsentwürfe im Malerhandwerk
+# FotoKalk
 
-FotoKalk ist eine Web-App/App-Lösung für Malerbetriebe, die bei der Angebotserstellung hilft: Betrieb einrichten, Preislogik hinterlegen, Baustellenkontext erfassen und daraus einen prüfbaren Angebotsentwurf vorbereiten.
+FotoKalk is a real web app for painting businesses. The live product surface is linked below; this repository does not try to duplicate it.
 
-Der Kern ist nicht ein großer KI-Claim, sondern ein sauberer Produktfluss: Stammdaten, Logo, Brand Voice, Preislisten, Stundenlöhne, Baustellenfotos, Notizen und Raummaße werden so strukturiert, dass ein Maler den Entwurf prüfen und bearbeiten kann.
+This repository contains a small, runnable code excerpt of the offer workflow. It can be reviewed without exposing the private production codebase, customer data, API routes, auth, billing, admin areas, database details or AI routing internals.
 
-## 60-Sekunden-Überblick
+## What can be reviewed here
 
-| Frage | Antwort |
-| --- | --- |
-| Problem | Nach Terminen liegen Fotos, Notizen, Maße, Material, Preise und Stundenlogik oft verteilt vor. |
-| Lösung | Eine Web-App, die Betriebsdaten und Baustellenkontext in einen Angebotsentwurf zusammenführt. |
-| KI-Rolle | KI bereitet aus Foto-, Text- und Dokumentkontexten Angebotsentwürfe vor. |
-| Prüfpunkt | Der Maler prüft Raummaße, Positionen, Preise und Formulierungen vor Nutzung. |
-| Roberts Beitrag | Problem eingegrenzt, App-Flow aufgebaut, Eingaben/Preislogik/Entwurf/Prüfung als Produktablauf strukturiert. |
-| Öffentliche Grenze | Keine vollständige Rohcode-Veröffentlichung, keine Kundendaten, keine API-/Auth-/Payment-/Admin-Details. |
+- room measurement logic with door and window deductions
+- demo price logic for wall, ceiling, preparation, masking and disposal positions
+- line-item generation from room data, notes and photo context
+- net, tax and gross totals
+- review flags before anything becomes a real offer
+- markdown output for a handoff-ready offer draft
+- tests and a public-safety scan
 
-## Architektur
+## What this repository does not contain
 
-Siehe [docs/architecture.md](./docs/architecture.md).
+- the full FotoKalk web app
+- production API routes
+- authentication, team, billing, admin or payment implementation
+- database schema, migrations or private queries
+- private prompt/model-routing details
+- real customer records, quotes, invoices, logs or screenshots
 
-## Workflow
-
-Siehe [docs/workflow.md](./docs/workflow.md).
-
-## Schneller Einstieg
-
-Siehe [docs/quick-review.md](./docs/quick-review.md) für den schnellen Überblick.
-
-## Ausführbarer Code-Auszug
-
-Dieses Repo enthält bewusst keinen vollständigen Produktcode. Der kleine Code-Auszug zeigt aber nachvollziehbar die Angebotslogik, die öffentlich sicher erklärbar ist:
-
-- `src/offer-flow.mjs`: Demo-Logik für Raumflächen, Öffnungen, Preispositionen, Angebotsentwurf und Prüfhinweise
-- `test/offer-flow.test.mjs`: Tests für Flächenberechnung, Angebotspositionen, Review-Flags und öffentliche Grenzen
-
-Lokal prüfen:
+## Run the code excerpt
 
 ```bash
-npm test
-python3 scripts/check_public_content.py
+npm run verify
+npm run demo
+npm run demo:write
 ```
 
-Der Code nutzt nur synthetische Demo-Daten. Nicht enthalten sind API-Routen, Auth, Payment, Admin-Logik, echte Prompts oder echte Kundendaten.
+`npm run verify` runs:
 
-## Was öffentlich prüfbar ist
+- node tests for room calculations, offer logic and review flags
+- a CLI summary check
+- a public-safety scan for env files, secret-like values, emails and phone numbers
 
-- High-Level-Architektur
-- Angebotsworkflow vom Setup bis zur Prüfung
-- Produktentscheidungen und Grenzen
-- reduzierter, ausführbarer Code-Auszug für die Angebotslogik
-- Tech-Stack auf Komponentenebene
-- Link zur geprüften Portfolio-/Demo-Oberfläche, sobald öffentlich freigegeben
+## Repository map
 
-## Was bewusst nicht öffentlich ist
+```text
+src/offer-flow.mjs          offer calculation, review flags, handoff checklist
+test/offer-flow.test.mjs    node:test coverage for the workflow
+scripts/demo.mjs            CLI demo: markdown, JSON, summary, generated example output
+examples/                   synthetic demo input and generated output
+docs/                       architecture, workflow and public/private boundary
+```
 
-- API-Routen und Promptlogik
-- Auth, Admin, Billing, Payment, Webhooks
-- Datenbankmigrationen und konkrete Tabellenlogik
-- echte Kundendaten, echte Angebote, private Screenshots
-- `.env`, Tokens, Schlüssel, Credentials
+## Original-project fidelity
 
-## Tech/Tools
+The private FotoKalk app includes onboarding, settings, price lists, room data, estimates, PDF output, auth, database queries, AI routes and operational integrations.
 
-Next.js, React, TypeScript, Supabase, OpenAI API, React PDF, XLSX, Dexie, Capacitor, Tailwind, Radix UI, Sentry, Vitest.
+This public repo keeps only the parts that are safe and useful for technical review:
 
-## Grenze
+- business setup and brand voice as input concepts
+- price logic and hourly-rate basis
+- room measurement flow with door/window deductions
+- photo and note context as input material
+- line-item generation
+- offer totals
+- review flags before handoff
 
-FotoKalk ist als prüfbarer Produktflow vorbereitet. Es wird nicht behauptet, dass ein Foto allein ein verlässliches Aufmaß ersetzt oder dass Angebotspositionen ohne fachliche Kontrolle übernommen werden sollen.
+## Product decision
+
+The important product decision is not that AI sends an offer by itself. The workflow prepares a structured draft while measurements, prices and wording stay reviewable by the painter.
+
+## Public links
+
+- Portfolio: `https://robert-systems.com`
+- FotoKalk website: `https://www.fotokalk.de/`
+- FotoKalk app: `https://app.fotokalk.de/`
+
+## License
+
+All rights reserved. This repository is portfolio and application material only.

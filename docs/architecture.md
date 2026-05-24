@@ -1,39 +1,61 @@
-# Architektur · FotoKalk
+# Architecture · FotoKalk
 
-Die öffentliche Architektur beschreibt die Komponenten auf Produkt- und Systemebene. Sie veröffentlicht keine API-Routen, Auth-Logik, Zahlungslogik oder Datenbankdetails.
+This repository shows a reduced, public-safe technical excerpt of the FotoKalk product logic. It keeps the workflow that an employer can inspect locally: room context, pricing positions, totals, review flags and handoff output.
+
+It does not contain the full private product repository. The actual FotoKalk product surface is linked from the README.
+
+## Product shape
+
+FotoKalk is framed as a web app for painting businesses. The relevant product flow is:
+
+1. A painter configures business context: company data, brand voice, logo context, price list and hourly rate.
+2. A site visit creates working material: photos, notes, room dimensions and practical constraints.
+3. The app turns that material into a structured offer draft.
+4. Review flags make clear what the painter must check before anything becomes a real offer.
+
+## Public technical excerpt
 
 ```mermaid
 flowchart LR
-  A["Betriebs-Setup"] --> B["Preis- und Stammdaten"]
-  B --> C["Baustellenkontext"]
-  C --> D["KI-gestützte Entwurfsvorbereitung"]
-  D --> E["Angebotsentwurf"]
-  E --> F["Prüfung und Bearbeitung durch Maler"]
-  F --> G["PDF / Weitergabe"]
+  A["examples/demo-offer-input.json<br/>synthetic project context"] --> B["buildOfferDraft()"]
+  B --> C["calculateRoomAreas()"]
+  B --> D["buildLineItems()"]
+  B --> E["calculateTotals()"]
+  B --> F["buildReviewFlags()"]
+  B --> G["handoffChecklist"]
+  F --> H["reviewable draft"]
+  G --> H
+  H --> I["renderOfferMarkdown()"]
+  I --> J["examples/demo-offer-output.md"]
 ```
 
-## Komponenten
+## Runtime surfaces
 
-| Bereich | Aufgabe | Öffentlicher Detailgrad |
-| --- | --- | --- |
-| Betriebs-Setup | Betrieb, Logo, Kontaktdaten, PDF-Darstellung, Grundlogik | Kategorien nennen, keine echten Daten |
-| Preislogik | Preislisten, Stundenlohn, Standardpositionen, Material-/Leistungslogik | Konzept nennen, keine produktiven Preislisten |
-| Baustellenkontext | Fotos, Notizen, Text, PDF, Sprache, Raumdaten | Inputs nennen, keine Upload-/API-Details |
-| KI-Schritt | Kontext strukturieren und Angebotsentwurf vorbereiten | Ergebnisrolle beschreiben, keine Prompts |
-| Angebotsentwurf | Positionen, Beschreibung, Preisstruktur, PDF-Ausgabe | Demo-/Beispielstruktur statt echte Angebote |
-| Prüfung | Fachliche Kontrolle durch Nutzer | zentraler öffentlicher Punkt |
+| Surface | Purpose |
+| --- | --- |
+| `src/offer-flow.mjs` | Core workflow: calculations, line items, review flags, markdown rendering |
+| `test/offer-flow.test.mjs` | Tests for room areas, price logic, review flags and handoff output |
+| `scripts/demo.mjs` | CLI demo for markdown, JSON, summary and generated example output |
+| `examples/demo-offer-input.json` | Synthetic input using Max Mustermann data |
 
-## Was detailgetreu bleibt
+## What is intentionally represented from the private app
 
-- FotoKalk war nicht nur Landingpage, sondern App-Oberfläche mit Dashboard-/Angebots-/Kunden-/Einstellungsbereichen.
-- Preislisten, Stundenlogik, PDF-Ausgabe und Angebotspositionen waren echte Produktbereiche.
-- Foto-/Text-/Dokumentkontext und Raumdaten wurden als Eingaben in der Angebotserstellung gedacht.
-- Web- und native Verpackung wurden durch Next.js und Capacitor vorbereitet.
+- room and opening calculations
+- business profile, brand voice and price basis as input concepts
+- pricing positions for wall, ceiling, preparation, masking and disposal
+- structured offer output
+- review flags for measurements, photos, demo prices and blockers
+- handoff checklist before anything could be sent to a customer
 
-## Was redigiert bleibt
+## What is intentionally not represented from the private app
 
-- konkrete API-Endpunkte
-- Auth-/Team-/Billing-/Admin-Implementierung
-- Datenbanktabellen und Migrationen
-- echte Konfiguration
-- produktive Kundendaten
+- production API routes
+- authentication, teams, billing, payment or admin code
+- production database schema
+- external AI routing details
+- private prompts, customer transcripts, logs or internal notes
+- real customer records, quotes, invoices or contact details
+
+## Review principle
+
+The important product decision is not that AI sends an offer by itself. The important decision is that the app prepares a structured draft and keeps the final technical and commercial decision with the painter.

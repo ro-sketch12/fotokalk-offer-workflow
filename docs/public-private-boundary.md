@@ -27,11 +27,8 @@ Gut:
 - “prüfbarer Angebotsentwurf”
 - “fachliche Kontrolle bleibt beim Nutzer”
 
-Nicht verwenden:
+Vermeiden:
 
-- “vollautomatisch”
-- “garantiert”
-- “DSGVO-konform”
-- “ersetzt den Maler”
-- harte Zeitersparnis ohne Messung
-
+- absolute Automatisierungs-, Compliance- oder Genauigkeitsaussagen ohne aktuelle Prüfung
+- harte Leistungs- oder Geschäftsergebnisversprechen ohne Messung
+- Formulierungen, die so wirken, als würde die App fachliche Verantwortung übernehmen

@@ -15,13 +15,11 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Run code tests
-        run: npm test
-      - name: Run public content check
-        run: python3 scripts/check_public_content.py
+      - name: Run code tests and demo checks
+        run: npm run verify
       - name: Check for oversized files
         run: |
           if find . -type f -size +1M | grep .; then
-            echo "Oversized files should not be committed to this public proof repo."
+            echo "Oversized files should not be committed to this public repository."
             exit 1
           fi

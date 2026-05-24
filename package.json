@@ -3,8 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Reduced offer-workflow logic for the FotoKalk case.",
+  "description": "Runnable public-safe code excerpt of the FotoKalk offer workflow.",
   "scripts": {
-    "test": "node --test test/*.test.mjs"
+    "test": "node --test test/*.test.mjs",
+    "demo": "node scripts/demo.mjs",
+    "demo:json": "node scripts/demo.mjs --json",
+    "demo:summary": "node scripts/demo.mjs --summary",
+    "demo:write": "node scripts/demo.mjs --write",
+    "public-check": "python3 scripts/check_public_content.py",
+    "verify": "npm test && npm run demo:summary && npm run public-check"
   }
 }

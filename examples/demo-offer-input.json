@@ -1,0 +1,47 @@
+{
+  "project": "Wohnung Mustermann",
+  "customer": "Max Mustermann",
+  "businessProfile": {
+    "companyName": "Malerbetrieb Demo",
+    "brandVoice": "klar, freundlich, fachlich vorsichtig",
+    "defaultHourlyRate": 52,
+    "vatRate": 0.19
+  },
+  "includePrepWork": true,
+  "includeMasking": true,
+  "includeDisposal": true,
+  "notes": [
+    "Wohnzimmer und Flur sollen neu gestrichen werden.",
+    "Untergrund im Flur wirkt uneben und sollte vor Ort geprüft werden."
+  ],
+  "photos": [
+    {
+      "fileName": "wohnzimmer-demo.jpg",
+      "note": "Wand mit alten Bohrlöchern"
+    },
+    {
+      "fileName": "flur-demo.jpg",
+      "note": "enger Bereich mit mehreren Türen"
+    }
+  ],
+  "rooms": [
+    {
+      "name": "Wohnzimmer",
+      "lengthM": 5,
+      "widthM": 4,
+      "heightM": 2.5,
+      "doors": 1,
+      "windows": 2,
+      "measuredFrom": "manual-input"
+    },
+    {
+      "name": "Flur",
+      "lengthM": 3,
+      "widthM": 1.8,
+      "heightM": 2.5,
+      "doors": 3,
+      "windows": 0,
+      "measuredFrom": "manual-input"
+    }
+  ]
+}
