@@ -13,7 +13,7 @@ FotoKalk is framed as a web app for painting businesses. The relevant product fl
 3. The app turns that material into a structured offer draft.
 4. Review flags make clear what the painter must check before anything becomes a real offer.
 
-## Public technical excerpt
+## Runnable code excerpt
 
 ```mermaid
 flowchart LR
